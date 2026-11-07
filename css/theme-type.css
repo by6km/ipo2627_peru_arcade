@@ -1,0 +1,27 @@
+/* DISEÑO TIPOGRÁFICO — dos fuentes contrastadas por tema (sin descargas):
+   jazz: serif clásica en titulares + sans de sistema en el texto.
+   synth: monoespaciada de aire digital en titulares + la misma sans en el texto. */
+:root,
+[data-theme="jazz"] {
+  --font-display: Georgia, "Times New Roman", serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --display-style: italic;
+  --display-tracking: 0;
+}
+[data-theme="synth"] {
+  --font-display: "Courier New", Courier, ui-monospace, monospace;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --display-style: normal;
+  --display-tracking: 0.04em;
+}
+:root {
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.6rem;
+  --font-size-2xl: clamp(1.75rem, 4vw, 2.5rem);
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+  --line-height-tight: 1.1;
+  --line-height-body: 1.5;
+}

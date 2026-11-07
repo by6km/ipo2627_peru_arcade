@@ -1,0 +1,19 @@
+/* DISEÑO ESPACIAL — unidades rem sobre una escala de 0.25rem.
+   Gestalt: proximidad (progreso y botones agrupados en su franja), similitud
+   (todos los botones comparten forma), figura/fondo (escenario enmarcado con
+   trazo grueso), continuidad (todo alineado al mismo borde) y, en la pantalla
+   de inicio, cierre y contraste entre las dos mitades fragmentadas. */
+:root {
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2.5rem;
+
+  --stroke: 3px;
+  --stroke-thin: 2px;
+  --radius: 2px;
+  --tap-size: 2.75rem;
+  --content-width: 46rem;
+}

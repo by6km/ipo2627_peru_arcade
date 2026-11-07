@@ -1,0 +1,119 @@
+/* ============================================================================
+   DISEÑO CROMÁTICO — ÚNICO fichero del proyecto donde se definen colores.
+   Ni el resto del CSS ni el JS contienen valores de color: solo usan estas
+   variables (el canvas las lee con getComputedStyle, ver js/view/theme.js).
+   Todo en HSL. Cada personaje tiene su tema, activado con data-theme:
+
+   JAZZ (El Saxofón) — estrategia MONOCROMÁTICA sepia (matices 28-42°):
+     papel de partitura antiguo, tinta oscura y acento de latón dorado.
+     El rojo terciopelo del telón (350°) y el verde ácido de las notas
+     desafinadas (100°) son las únicas notas disonantes.
+   SYNTH (El Teclado) — estrategia TRIÁDICA violeta (268°) / cian (186°) /
+     magenta (322°) sobre fondo nocturno, con lima (78°) para el peligro.
+
+   La pantalla de inicio coloca un elemento de cada tema lado a lado: como
+   los tokens se heredan, basta poner data-theme en cada mitad.
+   ============================================================================ */
+:root,
+[data-theme="jazz"] {
+  color-scheme: light;
+  --hue-paper: 38;
+  --hue-ink: 28;
+  --hue-brass: 42;
+  --hue-wood: 18;
+  --hue-velvet: 350;
+  --hue-dissonant: 100;
+
+  /* Página e interfaz */
+  --color-bg: hsl(var(--hue-paper) 40% 85%);
+  --color-surface: hsl(var(--hue-paper) 45% 91%);
+  --color-ink: hsl(var(--hue-ink) 40% 14%);
+  --color-ink-soft: hsl(var(--hue-ink) 25% 32%);
+  --color-line: hsl(var(--hue-ink) 30% 30% / 0.35);
+  --color-accent: hsl(var(--hue-brass) 82% 52%);
+  --color-on-accent: hsl(var(--hue-ink) 40% 12%);
+  --color-accent-2: hsl(var(--hue-wood) 55% 38%);
+  --color-danger: hsl(5 65% 38%);
+  --color-on-danger: hsl(var(--hue-paper) 50% 94%);
+  --color-focus: hsl(210 65% 30%);
+  --color-overlay: hsl(var(--hue-ink) 40% 14% / 0.6);
+  --color-panel: hsl(var(--hue-paper) 45% 91% / 0.95);
+
+  /* Juego (canvas) */
+  --color-game-bg-top: hsl(var(--hue-paper) 45% 88%);
+  --color-game-bg-bottom: hsl(35 40% 76%);
+  --color-game-staff: hsl(var(--hue-ink) 40% 14%);
+  --color-game-staff-faint: hsl(var(--hue-ink) 35% 20% / 0.2);
+  --color-game-grid: hsl(var(--hue-ink) 35% 20% / 0);
+  --color-game-key-white: hsl(var(--hue-brass) 60% 96%);
+  --color-game-key-black: hsl(var(--hue-ink) 40% 14%);
+  --color-game-cymbal: hsl(var(--hue-brass) 85% 50%);
+  --color-game-note: hsl(36 85% 40%);
+  --color-game-note-glow: hsl(var(--hue-brass) 95% 60%);
+  --color-game-rest: hsl(var(--hue-ink) 40% 14% / 0.6);
+  --color-game-bad: hsl(var(--hue-dissonant) 55% 32%);
+  --color-game-bad-2: hsl(var(--hue-velvet) 70% 40%);
+  --color-game-gust: hsl(var(--hue-ink) 25% 40% / 0.65);
+  --color-game-char-body: hsl(var(--hue-brass) 85% 50%);
+  --color-game-char-trim: hsl(var(--hue-ink) 45% 20%);
+  --color-game-char-key: hsl(var(--hue-brass) 60% 96%);
+  --color-game-char-eye: hsl(var(--hue-paper) 60% 98%);
+  --color-game-char-pupil: hsl(var(--hue-ink) 40% 12%);
+  --color-game-companion-a: hsl(var(--hue-wood) 55% 38%);
+  --color-game-companion-b: hsl(46 85% 52%);
+  --color-game-cage: hsl(var(--hue-ink) 30% 30%);
+  --color-game-spot: hsl(var(--hue-brass) 90% 70%);
+  --color-game-curtain: hsl(var(--hue-velvet) 45% 28%);
+  --color-game-stage-floor: hsl(var(--hue-ink) 40% 24%);
+}
+
+[data-theme="synth"] {
+  color-scheme: dark;
+  --hue-night: 268;
+  --hue-cyan: 186;
+  --hue-magenta: 322;
+  --hue-lime: 78;
+  --hue-sun: 52;
+
+  /* Página e interfaz */
+  --color-bg: hsl(var(--hue-night) 60% 9%);
+  --color-surface: hsl(var(--hue-night) 50% 14%);
+  --color-ink: hsl(270 40% 94%);
+  --color-ink-soft: hsl(var(--hue-night) 25% 72%);
+  --color-line: hsl(var(--hue-cyan) 100% 60% / 0.35);
+  --color-accent: hsl(var(--hue-cyan) 100% 58%);
+  --color-on-accent: hsl(var(--hue-night) 60% 9%);
+  --color-accent-2: hsl(var(--hue-magenta) 100% 62%);
+  --color-danger: hsl(var(--hue-lime) 100% 55%);
+  --color-on-danger: hsl(var(--hue-night) 60% 9%);
+  --color-focus: hsl(var(--hue-sun) 100% 62%);
+  --color-overlay: hsl(var(--hue-night) 60% 6% / 0.7);
+  --color-panel: hsl(var(--hue-night) 55% 10% / 0.93);
+
+  /* Juego (canvas) */
+  --color-game-bg-top: hsl(var(--hue-night) 65% 12%);
+  --color-game-bg-bottom: hsl(285 70% 22%);
+  --color-game-staff: hsl(var(--hue-cyan) 100% 62%);
+  --color-game-staff-faint: hsl(var(--hue-cyan) 100% 62% / 0.2);
+  --color-game-grid: hsl(var(--hue-magenta) 100% 62% / 0.28);
+  --color-game-key-white: hsl(var(--hue-night) 60% 92%);
+  --color-game-key-black: hsl(var(--hue-night) 60% 10%);
+  --color-game-cymbal: hsl(var(--hue-sun) 100% 60%);
+  --color-game-note: hsl(var(--hue-magenta) 100% 64%);
+  --color-game-note-glow: hsl(var(--hue-magenta) 100% 72%);
+  --color-game-rest: hsl(var(--hue-night) 80% 4% / 0.75);
+  --color-game-bad: hsl(var(--hue-lime) 100% 55%);
+  --color-game-bad-2: hsl(20 100% 58%);
+  --color-game-gust: hsl(var(--hue-cyan) 60% 80% / 0.65);
+  --color-game-char-body: hsl(var(--hue-magenta) 100% 62%);
+  --color-game-char-trim: hsl(var(--hue-night) 60% 12%);
+  --color-game-char-key: hsl(var(--hue-cyan) 100% 85%);
+  --color-game-char-eye: hsl(270 40% 98%);
+  --color-game-char-pupil: hsl(var(--hue-night) 60% 10%);
+  --color-game-companion-a: hsl(var(--hue-cyan) 100% 55%);
+  --color-game-companion-b: hsl(var(--hue-sun) 100% 60%);
+  --color-game-cage: hsl(var(--hue-cyan) 100% 70% / 0.85);
+  --color-game-spot: hsl(var(--hue-cyan) 100% 70%);
+  --color-game-curtain: hsl(var(--hue-magenta) 70% 25%);
+  --color-game-stage-floor: hsl(var(--hue-night) 55% 16%);
+}

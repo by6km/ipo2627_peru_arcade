@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es" data-theme="jazz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>La banda perdida</title>
+  <link rel="stylesheet" href="css/theme-color.css">
+  <link rel="stylesheet" href="css/theme-type.css">
+  <link rel="stylesheet" href="css/theme-space.css">
+  <link rel="stylesheet" href="css/main.css">
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <header class="masthead">
+    <h1 class="masthead__title">La banda perdida</h1>
+    <p class="masthead__text">Recorre la partitura, recoge notas y rescata a tus compañeros: cada uno que vuelve añade su instrumento a la canción.</p>
+  </header>
+
+  <main class="game">
+    <dl class="hud" data-view="hud" aria-label="Progreso">
+      <div class="hud__item"><dt>Notas</dt><dd><output data-hud="notes">0 / 0</output></dd></div>
+      <div class="hud__item">
+        <dt>Pistas</dt>
+        <dd>
+          <ul class="tracks" data-hud="tracks">
+            <li data-track="drums">Batería</li>
+            <li data-track="chords">Armonía</li>
+            <li data-track="bass">Bajo</li>
+            <li data-track="lead">Melodía</li>
+          </ul>
+        </dd>
+      </div>
+    </dl>
+
+    <nav class="toolbar" data-view="controls" aria-label="Controles de partida">
+      <button class="btn btn--primary" type="button" data-command="start">Comenzar</button>
+      <button class="btn" type="button" data-command="pause">Pausar</button>
+      <button class="btn btn--danger" type="button" data-command="finish">Finalizar</button>
+      <button class="btn" type="button" data-command="help">Ayuda</button>
+    </nav>
+
+    <section class="stage" aria-label="Zona de juego">
+      <canvas class="stage__canvas" data-view="game" tabindex="0" aria-label="Pantalla de juego"></canvas>
+
+      <section class="panel panel--cast" data-panel="start" hidden aria-labelledby="start-title">
+        <form class="cast-form" data-form="settings">
+          <h2 id="start-title" class="cast__title">¿Quién busca a su banda?</h2>
+          <fieldset class="cast">
+            <legend class="sr-only">Personaje</legend>
+            <label class="cast__half cast__half--jazz" data-theme="jazz">
+              <input class="cast__input" type="radio" name="character" value="sax" checked>
+              <canvas class="cast__preview" width="96" height="108" data-preview="sax" aria-hidden="true"></canvas>
+              <span class="cast__name">El Saxofón</span>
+              <span class="cast__text">Jazz de club, papel de partitura y latón.</span>
+            </label>
+            <label class="cast__half cast__half--synth" data-theme="synth">
+              <input class="cast__input" type="radio" name="character" value="keys">
+              <canvas class="cast__preview" width="96" height="108" data-preview="keys" aria-hidden="true"></canvas>
+              <span class="cast__name">El Teclado</span>
+              <span class="cast__text">Synth-pop de neón sobre violeta profundo.</span>
+            </label>
+          </fieldset>
+          <div class="cast-form__row">
+            <label class="field">
+              <span class="field__label">Notas desafinadas</span>
+              <select name="difficulty">
+                <option value="easy">Lentas</option>
+                <option value="normal" selected>Normales</option>
+                <option value="hard">Rápidas</option>
+              </select>
+            </label>
+            <button class="btn btn--primary" type="submit" data-autofocus>Jugar</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel" data-panel="paused" hidden aria-labelledby="paused-title">
+        <h2 id="paused-title" class="panel__title">Partida en pausa</h2>
+        <div class="panel__actions">
+          <button class="btn btn--primary" type="button" data-command="resume" data-autofocus>Reanudar</button>
+          <button class="btn btn--danger" type="button" data-command="finish">Abandonar partida</button>
+        </div>
+      </section>
+
+      <section class="panel" data-panel="over" hidden aria-labelledby="over-title">
+        <h2 id="over-title" class="panel__title">Se acabó el ensayo</h2>
+        <p class="panel__text">Notas recogidas: <output data-field="over-notes">0</output>.</p>
+        <div class="panel__actions">
+          <button class="btn btn--primary" type="button" data-command="restart" data-autofocus>Volver a intentarlo</button>
+          <button class="btn" type="button" data-command="settings">Cambiar personaje</button>
+        </div>
+      </section>
+
+      <section class="panel panel--strip" data-panel="won" hidden aria-labelledby="won-title">
+        <div>
+          <h2 id="won-title" class="panel__title">Concierto en marcha</h2>
+          <p class="panel__text">Notas: <output data-field="won-notes">0</output> · Músicos en el escenario: <output data-field="won-band">1</output>.</p>
+        </div>
+        <div class="panel__actions">
+          <button class="btn btn--primary" type="button" data-command="restart" data-autofocus>Tocar otra vez</button>
+          <button class="btn" type="button" data-command="settings">Cambiar personaje</button>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <dialog class="help" data-view="help" aria-labelledby="help-title">
+    <h2 id="help-title" class="help__title">Cómo se juega</h2>
+    <ul class="help__list">
+      <li>Las líneas del pentagrama son plataformas: se atraviesan desde abajo y puedes bajar de ellas con la flecha abajo.</li>
+      <li>Las teclas de piano suenan al pisarlas y los platos de batería te lanzan hacia arriba.</li>
+      <li>Los silencios bloquean el camino, las notas desafinadas rebotan (salta encima para vencerlas) y el ruido blanco te empuja. Si te golpean, pierdes notas.</li>
+      <li>Cada nota que recoges orbita a tu alrededor. Con 8 notas se suma la armonía; rescatar al bajista y a la trompetista añade el bajo y la melodía.</li>
+      <li>Llega a la puerta del escenario para oír el concierto con todos los que hayas rescatado.</li>
+      <li>P o Esc pausan la partida y H abre esta ayuda.</li>
+    </ul>
+    <form method="dialog"><button class="btn btn--primary" autofocus>Entendido</button></form>
+  </dialog>
+</body>
+</html>
